@@ -35,3 +35,45 @@ pub mod sum {
         Some(sum)
     }
 }
+
+pub mod shape {
+
+    pub trait Calculate {
+        fn calculate_area(&self) -> f32;
+    }
+
+    pub struct Circle {
+        pub r: f32,
+    }
+
+    impl Calculate for Circle {
+        fn calculate_area(&self) -> f32 {
+            3.14 * (self.r * self.r)
+        }
+    }
+
+    pub struct Triangle {
+        pub a: f32,
+        pub h: f32,
+    }
+
+    impl Calculate for Triangle {
+        fn calculate_area(&self) -> f32 {
+            (self.a * self.h) / 2.0
+        }
+    }
+
+    pub struct Square {
+        pub b: f32,
+    }
+
+    impl Calculate for Square {
+        fn calculate_area(&self) -> f32 {
+            self.b * self.b
+        }
+    }
+
+    pub fn get_area<T: Calculate>(shape: &T) -> f32 {
+        shape.calculate_area()
+    }
+}
